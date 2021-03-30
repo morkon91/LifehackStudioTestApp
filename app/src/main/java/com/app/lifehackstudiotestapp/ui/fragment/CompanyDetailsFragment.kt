@@ -131,7 +131,17 @@ class CompanyDetailsFragment :
             } catch (e: ActivityNotFoundException) {
                 showToast("Нет подходящего приложения для просмотра геопозиции")
             }
+        }
 
+        binding.companySiteTextView.setOnClickListener {
+            val intent = Intent()
+            intent.action = Intent.ACTION_VIEW
+            intent.data = Uri.parse("http://${result.companyData[0].www}")
+            try {
+                startActivity(intent)
+            } catch (e: ActivityNotFoundException) {
+                showToast("Нет подходящего приложения для просмотра геопозиции")
+            }
         }
 
         binding.phoneLinearLayout.resolveVisibility(result.companyData[0].phone != "")
